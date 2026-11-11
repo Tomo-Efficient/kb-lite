@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>便签 · 轻量版</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- 首页：选项目 -->
+<main class="home" id="home">
+  <div class="home-inner">
+    <header class="home-head">
+      <div class="brand big"><span class="dot"></span>便签 · 轻量版</div>
+      <p class="home-sub">数据只存在你自己的浏览器里，不需要服务器</p>
+    </header>
+
+    <div class="project-grid" id="project-grid"></div>
+
+    <div class="project-new">
+      <input id="new-project" placeholder="新建项目，比如：读书笔记、工作待办" />
+      <button class="btn primary" id="btn-add-project">创建项目</button>
+    </div>
+
+    <div class="lite-tools">
+      <button class="btn ghost" id="btn-export">导出备份</button>
+      <button class="btn ghost" id="btn-import">导入备份</button>
+      <input type="file" id="file-import" accept="application/json" hidden />
+      <span class="lite-tip">换电脑 / 清缓存前记得导出</span>
+    </div>
+  </div>
+</main>
+
+<!-- 项目内 -->
+<div class="workspace hidden" id="workspace">
+  <header class="topbar">
+    <button class="btn ghost back" id="btn-home" title="返回项目列表">←</button>
+    <div class="brand" id="project-name">项目</div>
+
+    <div class="search-wrap">
+      <input id="search" type="search" placeholder="搜索便签…" autocomplete="off" />
+    </div>
+
+    <div class="top-right">
+      <span class="lite-badge">本地存储</span>
+    </div>
+  </header>
+
+  <main class="page">
+    <section class="composer">
+      <div class="mode-switch" id="mode-switch">
+        <button class="mode on" data-mode="kb">知识库便签</button>
+        <button class="mode" data-mode="note">普通便签</button>
+        <span class="mode-tip" id="mode-tip">回车打开核对：标题、标签</span>
+      </div>
+
+      <div class="composer-box" id="composer-box">
+        <textarea id="input" rows="3" placeholder="把文字粘进来…（Enter 核对，Shift+Enter 换行）"></textarea>
+        <div class="composer-foot">
+          <span class="hint" id="hint">知识库便签：有标题和标签</span>
+          <button class="btn primary" id="btn-save" disabled>核对 →</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="wall-wrap">
+      <div class="wall-head">
+        <span id="wall-title">全部便签</span>
+        <span class="muted" id="wall-count"></span>
+        <span class="tagfilter" id="tagfilter"></span>
+      </div>
+      <div class="wall" id="wall"></div>
+    </section>
+  </main>
+</div>
+
+<div class="modal-mask hidden" id="mask">
+  <div class="modal" id="modal"></div>
+</div>
+
+<div class="toast" id="toast"></div>
+<script src="app.js"></script>
+</body>
+</html>
